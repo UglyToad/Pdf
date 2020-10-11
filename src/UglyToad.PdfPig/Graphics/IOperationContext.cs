@@ -21,11 +21,6 @@
         PdfPoint CurrentPosition { get; set; }
 
         /// <summary>
-        /// The matrices for the current text state.
-        /// </summary>
-        TextMatrices TextMatrices { get; }
-
-        /// <summary>
         /// The number of graphics states on the stack.
         /// </summary>
         int StackSize { get; }
@@ -92,6 +87,14 @@
         /// <param name="fillingRule">The filling rule to use.</param>
         /// <param name="close">Whether to also close the path.</param>
         void FillStrokePath(FillingRule fillingRule, bool close);
+
+        /// <summary>
+        /// Paint the shape and color shading described by a shading dictionary, subject to the current clipping path.
+        /// The current color in the graphics state is neither used nor altered.
+        /// The effect is different from that of painting a path using a shading pattern as the current color.
+        /// </summary>
+        /// <param name="name"></param>
+        void PaintShading(NameToken name);
 
         /// <summary>
         /// Add a move command to the path.
@@ -264,5 +267,25 @@
         /// Initial value: 0.
         /// </summary>
         void SetCharacterSpacing(double spacing);
+
+        /// <summary>
+        /// Begin a text object, initializing the text matrix and the text line matrix to the identity matrix. Text objects cannot be nested.
+        /// </summary>
+        void BeginText();
+
+        /// <summary>
+        /// End a text object, discarding the text matrix.
+        /// </summary>
+        void EndText();
+
+        /// <summary>
+        /// Set the text matrix and the text line matrix.
+        /// </summary>
+        void SetTextMatrix(double[] value);
+
+        /// <summary>
+        /// Move to the start of the next line offset by Tx Ty.
+        /// </summary>
+        void MoveToNextLineWithOffset(double tx, double ty);
     }
 }

@@ -271,6 +271,31 @@
             GetCurrentState().FontState.CharacterSpacing = spacing;
         }
 
+        public void BeginText()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void EndText()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void SetTextMatrix(double[] value)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void MoveToNextLineWithOffset(double tx, double ty)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void PaintShading(NameToken Name)
+        {
+            
+        }
+
         private class TestFontFactory : IFontFactory
         {
             public IFont Get(DictionaryToken dictionary)
